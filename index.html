@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+</head>
+<body>
+    
+ 
+    <!-- creating a form tag  -->
+  <!-- form tag open  -->
+    <form action="" >
+       
+         <!-- creating a div container  -->
+         
+         <div class="container">
+         
+            <!-- creating a screen container  -->
+            <div class="screen">
+                 
+                <!-- inside screen container input tag will be present  -->
+                <input type="text" name="display" id="disp" placeholder="0">
+
+                <!-- adding a icon tag set light and dark mdoe  -->
+                <i class=" bi-brightness-high-fill" id="dark" style="color:blueviolet;"></i>
+
+                      </div>
+              
+                      <!-- div container close  -->
+
+                      <!-- creating a  button container -->
+                      <div class="buttons">
+                           
+                        <!-- inside a button container add different types of buttons to perform some operations  -->
+
+                          <input type="button"  class="btn " id="ac"value="ac" /> 
+                          <input type="button"  class="btn" id="fact"value="x!" /> 
+                          <input type="button"  class="btn" id="openP"value="(" /> 
+                          <input type="button"  class="btn" id="closeP"value=")" /> 
+                          <input type="button" class="btn"  id="per" value="%"  /> 
+                          <input type="button"  class="btn" id="del" value="del" />
+
+                          <input type="button" class="btn" id="sin" value="sin"  />
+                          <input type="button" class="btn"  id="pi" value="π" onclick="getPi()"/> 
+                          <input type="button" class="btn" id="seven"value="7"  />
+                          <input type="button" class="btn" id="eight" value="8"/>
+                         <input type="button" class="btn" id="nine"value="9"  />
+                         <input type="button" class="btn"  id="div" value="/" />
+
+
+
+                        <input type="button" class="btn"  id="cos" value="cos"  /> 
+                        <input type="button" class="btn"  id="log" value="log"  /> 
+                        <input type="button"  class="btn" id="four" value="4"  />
+                        <input type="button" class="btn" id="five" value="5"  />
+                        <input type="button" class="btn" id="six" value="6" />
+                         <input type="button" class="btn" id="mul" value="*"/>
+              
+                         <input type="button" class="btn"  id="tan" value="tan"  /> 
+                         <input type="button" class="btn"  id="root" value="√"  /> 
+                         <input type="button" class="btn"id="one" value="1"  />
+                         <input type="button" class="btn" id="two" value="2"  />
+                         <input type="button" class="btn" id="three" value="3"  />
+                         <input  type="button" class="btn"  id="plus"value="+"  />
+                  
+                         <input type="button" class="btn"  id="exp" value="e"  /> 
+                        <button type="button" class="btn"  id="power" value="pow">x<sup>2</sup></button>
+                         <input type="button" class="btn"id="zero" value="0" />
+                         <input type="button" class="btn" id="dot" value="." />
+                        <input type="button" class="btn" id="minus" value="-" />
+                        <input type="button" class="btn" id="equal" value="="   />
+
+
+                       
+
+        
+      
+                      </div>
+                      <!-- button container close  -->
+         </div>
+        
+         <!-- main container close -->
+      
+    </form>
+    <!-- form close  -->
+
+    <!-- add two javaScript file in a html file  -->
+    <script src="script.js"></script>
+    <script src="mode.js"></script>
+
+<!-- body close  -->
+</body>
+
+</html>
