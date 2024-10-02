@@ -6,30 +6,6 @@
   font-family: sans-serif;
 }
 
-/* target html to add background image in a web page  */
-
-html{
-  background-repeat: no-repeat;
-  background-position: center center;
-   background-size: cover;
-   background-repeat:no-repeat;
-  background-blend-mode:color;
-  background: linear-gradient(
-      to right,
-      red,
-      rgb(181, 77, 77),
-      rgb(230, 100, 0),
-      rgb(0, 255, 0),
-         pink,
-         yellow,
-         aqua,
-        black
-        
-    ),
-    url(white.avif);
-   
-}
-
 /* targeting body and inside a body set position of container will be center  */
 body {
   min-height: 100vh;
