@@ -1,0 +1,292 @@
+/* add a div container and set intitally margin and padding  will be 0  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* target html to add background image in a web page  */
+
+html{
+  background-repeat: no-repeat;
+  background-position: center center;
+   background-size: cover;
+   background-repeat:no-repeat;
+  background-blend-mode:color;
+  background: linear-gradient(
+      to right,
+      red,
+      rgb(181, 77, 77),
+      rgb(230, 100, 0),
+      rgb(0, 255, 0),
+         pink,
+         yellow,
+         aqua,
+        black
+        
+    ),
+    url(white.avif);
+   
+}
+
+/* targeting body and inside a body set position of container will be center  */
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+/* border: 7px dotted red; */
+
+}
+
+/* setyling of container  */
+
+.container {
+  height: 530px;
+  width: 540px;
+  border: 3px solid white;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 13px 13px 13px 10px #cbced1, -13px -13px 20px #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+
+}
+
+/* styling of screen  */
+.container .screen {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+
+}
+
+/* styling of mode icon  */
+
+ .container .screen #dark{
+  margin-top: 20px;
+  color: dodgerblue;
+  margin-left: 450px;
+  cursor: pointer;
+  user-select: none;
+  /* height: 100px;
+  width: 70px; */
+  font-size: 25px;
+} 
+
+/* styling of input tag set height , width  */
+.container .screen input {
+  height: 65px;
+  width: 100%;
+  text-align: right;
+  background-color: white;
+  text-align: right;
+  color: black;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  box-shadow: inset 5px 5px 5px 5px #00000020, -5px -5px 3px #ffff;
+  border-bottom: 2px solid white;
+  padding: 7px;
+  caret-color: transparent;
+}
+
+
+
+
+/* styling of buttons  */
+.container .buttons {
+  margin-top: 25px;
+  padding: 5px;
+  /* margin-left: 10px; */
+  display: grid;
+  gap: 1.2rem;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  border-radius: 20px;
+}
+
+/* styling of button */
+.container .buttons .btn {
+  height: 50px;
+  width: 65px;
+  background-color: white;
+  color: black;
+  border: white;
+  outline: none;
+
+  border-radius: 7px;
+  text-transform: lowercase;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 7px 7px 8px #00000020, -7px -7px 8px #ffff;
+  transition: 0.1s;
+}
+
+/* hover effects of button  */
+/* when we clicking any button text size will be increase and button will be penitrate inside  */
+
+.container .buttons .btn:hover {
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: inset 7px 7px 7px rgba(0, 0, 0, 0.2);
+}
+
+/* targeting ac,del,equal button and set different different color  */
+
+#ac {
+  background-color: deeppink;
+}
+
+#del {
+  background-color: mediumspringgreen;
+}
+#equal {
+  background-color: aqua;
+ /* background-color:rgba(0, 0, 0, 0.1); */
+}
+
+/* add media query to make sure website is responsive  */
+
+/* for desktop size */
+
+@media only screen and (min-width: 1200px) {
+ 
+  .container .screen {
+    height: 120px;
+  }
+
+  .container .screen input {
+    height: 100px;
+    font-size: 40px;
+  }
+
+  .container .screen #dark {
+    margin-top: 10px;
+   
+    color: dodgerblue;
+  }
+}
+
+
+ 
+
+/* for laptop  size  */
+
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+
+  .container {
+    height: 480px;
+    width: 500px;
+  }
+
+  .container .buttons .btn {
+    height: 45px;
+    width: 55px;
+  }
+.container .screen{
+  height: 70px;
+}
+  .container .screen input {
+    height: 65px;
+    font-size: 35px;
+  }
+
+  .container .screen #dark {
+    margin-top: 15px;
+    margin-left: 410px;
+    color: dodgerblue;
+  }
+}
+
+
+/* for tablets size */
+
+
+
+@media only screen and (max-width: 768px) and (min-width: 481px) {
+ 
+
+  .container {
+    height: 430px;
+    width: 460px;
+    
+  }
+
+  .container .screen #dark{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 370px;
+    color: dodgerblue;
+    
+  }
+
+  .container .buttons {
+    margin-top: 10px;
+    gap: 1rem;
+  }
+
+  .container .buttons .btn {
+    height: 40px;
+    width: 55px;
+  }
+}
+
+
+/* for small screen  size */
+
+@media only screen and (max-width: 480px) {
+ 
+
+  .container {
+    height: 300px;
+    width: 280px;
+   
+  }
+
+
+.container .screen{
+  height: 40px;
+}
+  .container .screen input {
+    height: 45px;
+    font-size: 14px;
+  }
+
+  .container .screen #dark {
+    margin-top: 5px;
+    margin-left: 215px;
+    font-size: small;
+    color: dodgerblue;
+  }
+
+  .container .buttons {
+    padding-top: 12px;
+    margin-top: 30px;
+    gap: 0.8rem;
+  }
+
+
+     .container .buttons .btn {
+    height: 25px;
+    width: 30px;
+    font-size: 10px;
+  } 
+  
+}
+
