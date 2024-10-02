@@ -1,2 +1,2 @@
 # SmartCalculator
-Creating a simple attractive smart calculator.
+Creating a simple and attractive smart calculator.
