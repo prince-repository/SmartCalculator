@@ -160,18 +160,31 @@ function getRoot() {
 
 
 // Calculate trigonometric functions (sin, cos, tan)
-["sin", "cos", "tan"].forEach((func) => {
+["sin", "cos"].forEach((func) => {
   document.getElementById(func).addEventListener("click", () => {
     let val = parseFloat(display.value);
-    if (isNaN(val)) {
+    if (isNaN(val) ) {
       display.value = "Error";
       setTimeout(clearDisplay, 1000);
     } else {
       let radianVal = (val * Math.PI) / 180;
-      display.value = Math[func](radianVal).toFixed(10);
+      display.value = Math[func](radianVal).toFixed(5);
     }
   });
 });
+
+//finding the value of tan 
+const getTan=document.getElementById('tan');
+getTan.addEventListener('click',()=>{
+  let val = parseFloat(display.value);
+    if (isNaN(val) || val==90) {
+      display.value = "Error";
+      setTimeout(clearDisplay, 1000);
+    } else {
+      let radianVal = (val * Math.PI) / 180;
+      display.value = Math.tan(radianVal).toFixed(5);
+    }
+  });
 
 
 //calculate log
