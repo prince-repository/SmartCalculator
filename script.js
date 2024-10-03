@@ -127,7 +127,7 @@ function factorial(num) {
 
 // pi function 
 function getPi() {
-  display.value = "3.14159";
+  display.value = "3.1415926536";
 }
 
 //calculate exponential
