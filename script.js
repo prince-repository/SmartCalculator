@@ -168,7 +168,7 @@ function getRoot() {
       setTimeout(clearDisplay, 1000);
     } else {
       let radianVal = (val * Math.PI) / 180;
-      display.value = Math[func](radianVal).toFixed(5);
+      display.value = Math[func](radianVal);
     }
   });
 });
