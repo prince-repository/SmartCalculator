@@ -64,16 +64,16 @@ document.getElementById("dot").addEventListener("click", () => {
 });
 
 //targeting equal button to click user and get result 
-document.getElementById("equal").addEventListener("click", result);
-
-function result() {
-  try {
-    display.value = eval(display.value);
-  } catch {
-    display.value = "Error";
-    setTimeout(clearDisplay,500);
-  }
-}
+document.getElementById("equal").addEventListener("click", () => {
+    let expression = display.value;
+  
+    // Check if it contains 'log('
+    if (expression.includes("log(")) {
+      getLog(expression);
+    } else {
+      display.value = eval(expression);
+    }
+  });
 
 //targeting openP
 document.querySelector("#openP").addEventListener("click", () => {
@@ -188,28 +188,40 @@ getTan.addEventListener('click',()=>{
 
 
 //calculate log
+//calculate log()
 document.getElementById("log").addEventListener("click", () => {
-  let val = parseFloat(display.value);
-  if (!isNaN(val)) {
-    display.value = Math.log10(val).toFixed(5);
-  } else {
-    display.value = "Error";
-    setTimeout(clearDisplay,1000);
+    display.value += "log(";
+  });
+  
+  function getLog(expression) {
+    // Extract the number inside log()
+    let startIndex = expression.indexOf("log(") + 4;
+    let endIndex = expression.indexOf(")");
+    let number = parseFloat(expression.substring(startIndex, endIndex));
+  
+    // Calculate log10 if the number is valid (greater than 0)
+    if (number > 0) {
+      let result = Math.log10(number).toFixed(5);
+      display.value = result;
+    } else {
+      display.value = "Error";
+    }
   }
-});
+  
 
 
 // calculate x^y
 document.getElementById("power").addEventListener("click", () => {
-  let x = parseFloat(display.value);
-
-  if (!isNaN(x)) {
-    display.value = x * x;
-  } else {
-    display.value = "Error";
-    setTimeout(clearDisplay,1000);
-  }
-});
+    let y = parseFloat(display.value);
+  
+   
+    if (isNaN(y) || y === '') {
+      display.value = 0;
+      setTimeout(clearDisplay, 500);
+    } else {
+      display.value = y * y ;
+    }
+  });
 
 
 // Play sound
@@ -235,7 +247,6 @@ ac.addEventListener('click',()=>{
   const sound = new Audio('click3.mp3');
   sound.play();
 });
-
 
 
 
