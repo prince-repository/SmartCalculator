@@ -1,118 +1,126 @@
-//targeting display screen 
+//targeting display screen
 const display = document.querySelector("#disp");
 
-// set preventdefault user can press only calculator buttons 
+// set preventdefault user can press only calculator buttons
 document.getElementById("disp").addEventListener("keydown", (event) => {
   event.preventDefault();
 });
 
 // clear the display
-function clearDisplay(){
+function clearDisplay() {
   display.value = "";
 }
 
 document.getElementById("ac").addEventListener("click", clearDisplay);
 
-//targeting all buttons one by one and perform operations 
+//targeting all buttons one by one and perform operations
 document.getElementById("del").addEventListener("click", () => {
   display.value = display.value.toString().slice(0, -1);
 });
 
-
-
 // keypad numbers functions ("zero","one","two","three","four","five","six","seven","eight","nine")
 
-const keypad=["zero","one","two","three","four","five","six","seven","eight","nine"];
-keypad.forEach((id,num) => {
+const keypad = [
+  "zero",
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+];
+keypad.forEach((id, num) => {
   document.getElementById(id).addEventListener("click", () => {
-   display.value+=num.toString();
+    display.value += num.toString();
   });
 });
 
-
-
-
+//calculate per
 document.getElementById("per").addEventListener("click", () => {
   display.value += "%";
 });
 
-document.getElementById("div").addEventListener("click", () => {
-  display.value += "/";
-});
-
+function getPer(expression) {
+  if (expression.includes("%")) {
+    let val = parseFloat(expression);
+    display.value = (val / 100).toFixed(5);
+  } 
+}
 
 
 document.getElementById("mul").addEventListener("click", () => {
   display.value += "*";
 });
 
-
-
 document.getElementById("minus").addEventListener("click", () => {
   display.value += "-";
 });
-
 
 document.getElementById("plus").addEventListener("click", () => {
   display.value += "+";
 });
 
-
-
 document.getElementById("dot").addEventListener("click", () => {
   display.value += ".";
 });
 
-//targeting equal button to click user and get result 
+//targeting equal button to click user and get result
 document.getElementById("equal").addEventListener("click", () => {
-    let expression = display.value;
-  
-    // Check if it contains 'log('
-    if (expression.includes("log(")) {
-      getLog(expression);
-    } else {
+  let expression = display.value;
+
+  // Check if it contains 'log('
+   if (expression.includes("%")) {
+    getPer(expression);
+  }
+ else if (expression.includes("log(")) {
+    getLog(expression);
+  } else if (expression.includes("sin(")) {
+    getSin(expression);
+  } else if (expression.includes("cos(")) {
+    getCos(expression);
+  } else if (expression.includes("tan(")) {
+    getTan(expression);
+  } else if (expression.includes("√")) {
+    getRoot(expression);
+  } else {
+    try{
       display.value = eval(expression);
+    }catch(error){
+      display.value='Error';
     }
-  });
+  }
+});
 
 //targeting openP
 document.querySelector("#openP").addEventListener("click", () => {
-  try{
+  try {
     display.value += "(";
+  } catch {
+    display.value = "Error";
   }
- catch{
-  display.value='Error';
- 
- }
-
-   
-  
 });
 
-//targeting closeP 
+//targeting closeP
 document.querySelector("#closeP").addEventListener("click", () => {
-  try{
+  try {
     display.value += ")";
+  } catch {
+    display.value = "Error";
   }
- catch{
-  display.value='Error';
- 
- }
 });
 
-
-//calculate factorial 
+//calculate factorial
 document.querySelector("#fact").addEventListener("click", () => {
-
   let num = parseInt(display.value);
   // console.log(num);
   if (isNaN(num) || num < 0) {
     display.value = "Error";
-    setTimeout(clearDisplay,1000);
-    
+    setTimeout(clearDisplay, 1000);
   } else {
     display.value = factorial(num);
-   
   }
 });
 
@@ -125,7 +133,7 @@ function factorial(num) {
   }
 }
 
-// pi function 
+// pi function
 function getPi() {
   display.value = "3.1415926536";
 }
@@ -134,119 +142,137 @@ function getPi() {
 document.getElementById("exp").addEventListener("click", calculateExp);
 
 function calculateExp() {
- 
-
-       
-    display.value += "2.71828";
-  
+  display.value += "2.71828";
 }
 
 //calculate root
-document.getElementById("root").addEventListener("click", getRoot);
-function getRoot() {
-  let val = parseFloat(display.value);
-  if (val < 0) {
+document.getElementById("root").addEventListener("click", () => {
+  display.value += "√";
+});
+
+// document.getElementById("root").addEventListener("click", getRoot);
+function getRoot(expression) {
+  let startIndex = expression.indexOf("√") + 1;
+  let endIndex = expression.length;
+  let number = parseFloat(expression.substring(startIndex, endIndex));
+
+  if (number < 0) {
     display.value = "Error";
-    setTimeout(()=>{
+    setTimeout(() => {
       clearDisplay();
-    },1000);
-  } else if (!isNaN(val)) {
-    display.value = Math.sqrt(val).toFixed(5);
-  } else {
+    }, 1000);
+  } else if (isNaN(number)) {
     display.value = "Error";
-    setTimeout(clearDisplay,1000);
+    setTimeout(clearDisplay, 1000);
+  } else {
+    display.value = Math.sqrt(number).toFixed(5);
   }
 }
 
-
 // Calculate trigonometric functions (sin, cos, tan)
-["sin", "cos"].forEach((func) => {
-  document.getElementById(func).addEventListener("click", () => {
-    let val = parseFloat(display.value);
-    if (isNaN(val) ) {
-      display.value = "Error";
-      setTimeout(clearDisplay, 1000);
-    } else {
-      let radianVal = (val * Math.PI) / 180;
-      display.value = Math[func](radianVal).toFixed(5);
-    }
-  });
+document.getElementById("sin").addEventListener("click", () => {
+  display.value += "sin(";
 });
 
-//finding the value of tan 
-const getTan=document.getElementById('tan');
-getTan.addEventListener('click',()=>{
-  let val = parseFloat(display.value);
-    if (isNaN(val) || val==90) {
-      display.value = "Error";
-      setTimeout(clearDisplay, 1000);
-    } else {
-      let radianVal = (val * Math.PI) / 180;
-      display.value = Math.tan(radianVal).toFixed(5);
-    }
-  });
+document.getElementById("cos").addEventListener("click", () => {
+  display.value += "cos(";
+});
 
+document.getElementById("tan").addEventListener("click", () => {
+  display.value += "tan(";
+});
 
-//calculate log
+function getSin(expression) {
+  // Extract the number inside log()
+  let startIndex = expression.indexOf("sin(") + 4;
+  let endIndex = expression.indexOf(")");
+  let number = parseFloat(expression.substring(startIndex, endIndex));
+  if (isNaN(number)) {
+    display.value = "Error";
+  } else {
+    let radianVal = (number * Math.PI) / 180;
+    display.value = Math.sin(radianVal).toFixed(5);
+  }
+}
+
+function getCos(expression) {
+  // Extract the number inside log()
+  let startIndex = expression.indexOf("cos(") + 4;
+  let endIndex = expression.indexOf(")");
+  let number = parseFloat(expression.substring(startIndex, endIndex));
+  if (isNaN(number)) {
+    display.value = "Error";
+  } else {
+    let radianVal = (number * Math.PI) / 180;
+    display.value = Math.cos(radianVal).toFixed(5);
+  }
+}
+
+function getTan(expression) {
+  // Extract the number inside log()
+  let startIndex = expression.indexOf("tan(") + 4;
+  let endIndex = expression.indexOf(")");
+  let number = parseFloat(expression.substring(startIndex, endIndex));
+  if (isNaN(number) || number == 90) {
+    display.value = "Error";
+  } else {
+    let radianVal = (number * Math.PI) / 180;
+    display.value = Math.tan(radianVal).toFixed(5);
+  }
+}
+
 //calculate log()
 document.getElementById("log").addEventListener("click", () => {
-    display.value += "log(";
-  });
-  
-  function getLog(expression) {
-    // Extract the number inside log()
-    let startIndex = expression.indexOf("log(") + 4;
-    let endIndex = expression.indexOf(")");
-    let number = parseFloat(expression.substring(startIndex, endIndex));
-  
-    // Calculate log10 if the number is valid (greater than 0)
-    if (number > 0) {
-      let result = Math.log10(number).toFixed(5);
-      display.value = result;
-    } else {
-      display.value = "Error";
-    }
-  }
-  
+  display.value += "log(";
+});
 
+function getLog(expression) {
+  // Extract the number inside log()
+  let startIndex = expression.indexOf("log(") + 4;
+  let endIndex = expression.indexOf(")");
+  let number = parseFloat(expression.substring(startIndex, endIndex));
+
+  // Calculate log10 if the number is valid (greater than 0)
+  if (number > 0) {
+    let result = Math.log10(number).toFixed(5);
+    display.value = result;
+  } else {
+    display.value = "Error";
+  }
+}
 
 // calculate x^y
 document.getElementById("power").addEventListener("click", () => {
-    let y = parseFloat(display.value);
-  
-   
-    if (isNaN(y) || y === '') {
-      display.value = 0;
-      setTimeout(clearDisplay, 500);
-    } else {
-      display.value = y * y ;
-    }
-  });
+  let y = parseFloat(display.value);
 
+  if (isNaN(y) || y === "") {
+    display.value = 0;
+    setTimeout(clearDisplay, 500);
+  } else {
+    display.value = y * y;
+  }
+});
 
 // Play sound
-const playSounds = document.querySelectorAll('.btn');
+const playSounds = document.querySelectorAll(".btn");
 
 playSounds.forEach((button) => {
-  button.addEventListener('click', () => {
-    const sound = new Audio('click1.mp3');
+  button.addEventListener("click", () => {
+    const sound = new Audio("click1.mp3");
     sound.play();
   });
 });
 
-//equal button play sound 
-const equals=document.querySelector('#equal');
-equals.addEventListener('click',()=>{
-  const sound = new Audio('click2.mp3');
+//equal button play sound
+const equals = document.querySelector("#equal");
+equals.addEventListener("click", () => {
+  const sound = new Audio("click2.mp3");
   sound.play();
 });
 
-//ac button play sound 
-const ac=document.querySelector('#ac');
-ac.addEventListener('click',()=>{
-  const sound = new Audio('click3.mp3');
+//ac button play sound
+const ac = document.querySelector("#ac");
+ac.addEventListener("click", () => {
+  const sound = new Audio("click3.mp3");
   sound.play();
 });
-
-
-
