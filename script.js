@@ -39,17 +39,21 @@ keypad.forEach((id, num) => {
 });
 
 //calculate per
+
 document.getElementById("per").addEventListener("click", () => {
   display.value += "%";
 });
 
 function getPer(expression) {
-  if (expression.includes("%")) {
-    let val = parseFloat(expression);
-    display.value = (val / 100).toFixed(5);
-  } 
-}
+  let parts = expression.split("%");
+  let num1 = parseFloat(parts[0]);
+  let num2 = parseFloat(parts[1]);
 
+  // Calculate percentage
+  let result = (num1 / 100) * num2;
+
+  display.value = result.toFixed(2);
+}
 
 document.getElementById("mul").addEventListener("click", () => {
   display.value += "*";
@@ -72,10 +76,9 @@ document.getElementById("equal").addEventListener("click", () => {
   let expression = display.value;
 
   // Check if it contains 'log('
-   if (expression.includes("%")) {
+  if (expression.includes("%")) {
     getPer(expression);
-  }
- else if (expression.includes("log(")) {
+  } else if (expression.includes("log(")) {
     getLog(expression);
   } else if (expression.includes("sin(")) {
     getSin(expression);
@@ -86,10 +89,10 @@ document.getElementById("equal").addEventListener("click", () => {
   } else if (expression.includes("√")) {
     getRoot(expression);
   } else {
-    try{
+    try {
       display.value = eval(expression);
-    }catch(error){
-      display.value='Error';
+    } catch (error) {
+      display.value = "Error";
     }
   }
 });
@@ -182,8 +185,8 @@ document.getElementById("tan").addEventListener("click", () => {
   display.value += "tan(";
 });
 
+//sin()
 function getSin(expression) {
-  // Extract the number inside log()
   let startIndex = expression.indexOf("sin(") + 4;
   let endIndex = expression.indexOf(")");
   let number = parseFloat(expression.substring(startIndex, endIndex));
@@ -195,8 +198,8 @@ function getSin(expression) {
   }
 }
 
+//cos()
 function getCos(expression) {
-  // Extract the number inside log()
   let startIndex = expression.indexOf("cos(") + 4;
   let endIndex = expression.indexOf(")");
   let number = parseFloat(expression.substring(startIndex, endIndex));
@@ -208,8 +211,8 @@ function getCos(expression) {
   }
 }
 
+//tan()
 function getTan(expression) {
-  // Extract the number inside log()
   let startIndex = expression.indexOf("tan(") + 4;
   let endIndex = expression.indexOf(")");
   let number = parseFloat(expression.substring(startIndex, endIndex));
