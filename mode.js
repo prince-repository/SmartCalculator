@@ -78,7 +78,8 @@ document.body.style.backgroundColor='white';
 
       colors();
       button.addEventListener("mouseover", () => {
-        button.style.boxShadow = " 2px 2px 2px springgreen, -2px -2px 2px red";
+       // button.style.boxShadow = " 2px 2px 2px springgreen, -2px -2px 2px red";
+        button.style.backgroundColor="aqua";
         button.style.fontSize = "15px";
       });
 
